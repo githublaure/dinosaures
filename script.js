@@ -30,6 +30,7 @@ let hasFlippedCard = false;
 let lockBoard = false;
 let firstCard, secondCard;
 let startTime, timerInterval;
+let attempts = 0;
 
 function shuffle(array) {
     array.sort(() => Math.random() - 0.5);
@@ -51,6 +52,7 @@ function createCard(dinosaur) {
 function setupBoard() {
     shuffle(cardArray);
     const gameContainer = document.getElementById('gameContainer');
+    gameContainer.innerHTML = '';  // Vider le conteneur pour recommencer le jeu
     cardArray.forEach(card => {
         const cardElement = createCard(card);
         gameContainer.appendChild(cardElement);
@@ -67,6 +69,11 @@ function updateTimer() {
     const timerElement = document.getElementById('timer');
     const elapsed = Math.floor((Date.now() - startTime) / 1000);
     timerElement.textContent = `Temps écoulé : ${elapsed} secondes`;
+}
+
+function updateAttempts() {
+    const attemptsElement = document.getElementById('attempts');
+    attemptsElement.textContent = `Tentatives : ${attempts}`;
 }
 
 function stopTimer() {
@@ -86,6 +93,8 @@ function flipCard() {
     }
 
     secondCard = this;
+    attempts++;
+    updateAttempts();
     checkForMatch();
 }
 
@@ -125,4 +134,14 @@ function resetBoard() {
     [firstCard, secondCard] = [null, null];
 }
 
-document.addEventListener('DOMContentLoaded', setupBoard);
+function restartGame() {
+    stopTimer();
+    attempts = 0;
+    updateAttempts();
+    setupBoard();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    setupBoard();
+    document.getElementById('restartButton').addEventListener('click', restartGame);
+});

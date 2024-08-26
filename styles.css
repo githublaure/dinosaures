@@ -9,18 +9,36 @@ body {
     margin: 0;
 }
 
-.timer {
+.header {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.timer, .attempts {
     font-size: 24px;
     color: #333;
-    text-align: center;
-    width: 100%;
-    margin-top: 20px; 
-    margin-bottom: 20px;
+}
+
+.restart-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.restart-button:hover {
+    background-color: #45a049;
 }
 
 .game-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
     gap: 10px;
     max-width: 1200px;
     margin: auto;
@@ -68,7 +86,8 @@ body {
 
 .card-front {
     background-color: #4CAF50; /* Couleur verte pour le recto des cartes */
-    color: #4CAF50; /* Rendre le texte invisible en mettant la même couleur que le fond */
+    color: transparent; /* Rendre le texte complètement invisible */
+    text-indent: -9999px; /* Masquer le texte même en cas de transparence */
 }
 
 .card-back {
@@ -81,3 +100,4 @@ body {
     max-width: 100%;
     max-height: 100%;
 }
+
