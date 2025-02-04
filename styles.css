@@ -71,7 +71,28 @@ body {
     transform: rotateY(180deg);
 }
 
-.card-front, .card-back {
+
+
+.card-front {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: #4CAF50; /* Couleur verte pour le recto des cartes */
+    background-image: url('dino/image_front_dino.png'); /* Définir l'image de fond */
+    background-size: cover; /* Couvre toute la surface de la carte */
+    background-position: center; /* Centre l'image dans la carte */
+    background-repeat: no-repeat; /* Empêche la répétition de l'image */
+    color: transparent; /* Rendre le texte complètement invisible */
+    text-indent: -9999px; /* Masquer le texte même en cas de transparence */
+}
+.card-back {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -84,11 +105,6 @@ body {
     box-sizing: border-box;
 }
 
-.card-front {
-    background-color: #4CAF50; /* Couleur verte pour le recto des cartes */
-    color: transparent; /* Rendre le texte complètement invisible */
-    text-indent: -9999px; /* Masquer le texte même en cas de transparence */
-}
 
 .card-back {
     background-color: #fff;
